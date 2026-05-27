@@ -1,0 +1,3 @@
+[submodule "WiringPi-Python"]
+	path = WiringPi-Python
+	url = https://github.com/xsun2445/WiringPi-Python.git
