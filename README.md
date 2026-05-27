@@ -4,6 +4,8 @@ Fork of [WiringPi-Python](https://github.com/WiringPi/WiringPi-Python) with supp
 
 Standard WiringPi can only toggle one GPIO pin at a time from Python. This fork adds C-level functions that drive GPIO pins 20-27 simultaneously via direct register writes (`digitalWriteByte2`), achieving microsecond-precision synchronized pulses across up to 8 pins.
 
+This function is mainly used for triggering multiple FMCW radars for building a multi-static radar array. 
+
 ## What was modified
 
 **WiringPi C library** ([fork](https://github.com/xsun2445/WiringPi)):
@@ -14,17 +16,6 @@ Standard WiringPi can only toggle one GPIO pin at a time from Python. This fork 
 - Added SWIG declarations in `bindings.i` to expose the new C functions to Python
 - Version bumped to 3.60.1
 
-## Prerequisites
-
-- Raspberry Pi (tested on ARM64 / Pi 5)
-- Python 3 with development headers
-- SWIG (optional - pre-generated wrapper is included)
-- Build tools (gcc, make)
-
-```bash
-sudo apt-get update
-sudo apt-get install python3-dev python3-setuptools swig build-essential
-```
 
 ## Installation
 
@@ -93,7 +84,19 @@ A client connects to a remote server and triggers on command:
 sudo python3 trigger_client.py 192.168.1.100 --port 5000
 ```
 
-See `--help` on either script for all options.
+### Standalone trigger (no network)
+
+`hard_trigger.py` runs continuous pulse trains without a TCP server:
+
+```bash
+# Continuous free-running pulse loop
+sudo python3 hard_trigger.py --num-pulses 100 --period-us 1500
+
+# Motor-triggered mode: waits for a rising edge on input pin 26,
+# then fires a pulse train on each trigger event. This is used for 
+# collecting SAR on a motion stage
+sudo python3 hard_trigger.py --mode motor --num-pulses 100 --period-us 1500
+```
 
 ### Message protocol
 
@@ -112,13 +115,3 @@ hello from server!@$@$100@$@$1500
 | `sendPulseToRadar(pins, num_loop, pd)` | Send `num_loop` pulses with `pd` microsecond period on GPIO pins selected by bitmask `pins` |
 | `sendPulseToRadar2(pins, num_loop, pd, w)` | Same as above with pulse width `w` control |
 
-## Troubleshooting
-
-- **Permission errors** - GPIO access requires root. Run with `sudo`.
-- **SWIG not found** - The build falls back to the pre-generated `wiringpi_wrap.c`. Install SWIG only if you modify the C code.
-- **Import errors** - Make sure you installed with the same Python version you are running.
-- **Empty submodule directories** - Run `git submodule update --init --recursive`.
-
-## License
-
-WiringPi is licensed under the GNU Lesser General Public License v3.0. See [LICENSE](WiringPi-Python/LICENSE.txt) for details.
