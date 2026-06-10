@@ -1,10 +1,34 @@
 # WiringPi-Python-MultiPin
 
-Fork of [WiringPi-Python](https://github.com/WiringPi/WiringPi-Python) with support for **simultaneous multi-pin GPIO pulse generation** on Raspberry Pi.
+Fork of [WiringPi-Python](https://github.com/WiringPi/WiringPi-Python) with support for **simultaneous multi-pin GPIO pulse generation** on Raspberry Pi (Tested on model 4B).
 
-Standard WiringPi can only toggle one GPIO pin at a time from Python. This fork adds C-level functions that drive GPIO pins 20-27 simultaneously via direct register writes (`digitalWriteByte2`), achieving microsecond-precision synchronized pulses across up to 8 pins.
+Standard WiringPi can only toggle one GPIO pin at a time from Python. This fork adds C-level functions that drive GPIO pins 20-27 simultaneously via direct register writes (`digitalWriteByte2`), achieving simultanous synchronized pulses across up to 8 pins.
 
-This function is mainly used for triggering multiple FMCW radars for building a multi-static radar array. 
+This function is mainly used for triggering multiple FMCW radars (TI AWR2243/1243BOOST) for building a multi-static radar array. 
+
+<div style="display: flex; gap: 1rem; justify-content: center;">
+  <div style="text-align: center;">
+    <img src="assets/multipin_1.jpg" alt="Image 1" width="300" />
+    <p><em>GPIO output original</em></p>
+  </div>
+  <div style="text-align: center;">
+    <img src="assets/multipin_0.jpg" alt="Image 2" width="300" />
+    <p><em>GPIO output modified</em></p>
+  </div>
+</div>
+
+This function was used in previous projects:
+
+* 77GHz polarimetric SAR platform: https://github.com/xsun2445/polysight
+
+* Multi-static array with multiple single-chip radars: https://github.com/xsun2445/MulDar
+
+## Pins:
+
+<div align="center" style="margin-top: 1rem;">
+  <img src="assets/multipin_3.jpg" alt="Image 3" width="300" />
+  <p><em>GPIO pins 20-27</em></p>
+</div>
 
 ## What was modified
 
