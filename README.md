@@ -6,15 +6,14 @@ Standard WiringPi can only toggle one GPIO pin at a time from Python. This fork 
 
 This function is mainly used for triggering multiple FMCW radars (TI AWR2243/1243BOOST) for building a multi-static radar array. 
 
-<div style="display: flex; gap: 1rem; justify-content: center;">
-  <div style="text-align: center;">
-    <img src="assets/multipin_1.jpg" alt="Image 1" width="300" />
-    <p><em>GPIO output original</em></p>
-  </div>
-  <div style="text-align: center;">
-    <img src="assets/multipin_0.jpg" alt="Image 2" width="300" />
-    <p><em>GPIO output modified</em></p>
-  </div>
+<div align="center" style="margin-top: 1rem;">
+  <img src="assets/multipin_1.jpg" alt="Image 3" width="40%" />
+  <p><em>GPIO output original</em></p>
+</div>
+
+<div align="center" style="margin-top: 1rem;">
+  <img src="assets/multipin_0.jpg" alt="Image 3" width="40%" />
+  <p><em>GPIO output modified</em></p>
 </div>
 
 This function was used in previous projects:
@@ -26,7 +25,7 @@ This function was used in previous projects:
 ## Pins:
 
 <div align="center" style="margin-top: 1rem;">
-  <img src="assets/multipin_3.jpg" alt="Image 3" width="300" />
+  <img src="assets/multipin_3.jpg" alt="Image 3" width="40%" />
   <p><em>GPIO pins 20-27</em></p>
 </div>
 
