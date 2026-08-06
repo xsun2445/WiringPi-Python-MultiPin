@@ -137,5 +137,5 @@ hello from server!@$@$100@$@$1500
 | Function | Description |
 |----------|-------------|
 | `sendPulseToRadar(pins, num_loop, pd)` | Send `num_loop` pulses with `pd` microsecond period on GPIO pins selected by bitmask `pins` |
-| `sendPulseToRadar2(pins, num_loop, pd, w)` | Same as above with pulse width `w` control |
+| `sendPulseToRadar2(pins, num_loop, pd, w)` | Same as above with pulse width `w` control. pin_mask(0xff select all), num_pulse, period(us), pulsewidth(us)|
 
