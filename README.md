@@ -90,6 +90,7 @@ import wiringpi
 wiringpi.wiringPiSetupGpio()
 
 # Send 100 pulses with 1500us period on all 8 pins (20-27)
+# pin_mask(0xff select all), num_pulse, period(us), pulsewidth(us)
 wiringpi.sendPulseToRadar2(0xff, 100, 1500, 1)
 ```
 
